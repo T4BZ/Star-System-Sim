@@ -190,6 +190,7 @@ GameObject:
   - component: {fileID: 548937351}
   - component: {fileID: 548937350}
   - component: {fileID: 548937349}
+  - component: {fileID: 548937354}
   - component: {fileID: 548937353}
   m_Layer: 0
   m_Name: Star2
@@ -216,7 +217,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 548937348}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -259,7 +260,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 548937348}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.52, y: 0, z: 6.4}
+  m_LocalPosition: {x: -5.52, y: -0.05, z: 6.41}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -276,7 +277,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d1d8ef9d0db12543b2d82fe20037170, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mass: 5000
+  mass: 2000
+  level: 0
+--- !u!108 &548937354
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 548937348}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.18378538, b: 0, a: 1}
+  m_Intensity: 2
+  m_Range: 1.5
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &702279857
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,6 +326,7 @@ GameObject:
   - component: {fileID: 702279860}
   - component: {fileID: 702279859}
   - component: {fileID: 702279858}
+  - component: {fileID: 702279861}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -323,9 +363,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  field of view: 29.8
+  orthographic: 1
+  orthographic size: 9.19
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -347,13 +387,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 702279857}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -5.34, y: 5.07, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &702279861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702279857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ab077705ffc89f4e94c21e183feeeca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centreOfMass: {fileID: 719544439}
 --- !u!1 &719544439
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,7 +419,7 @@ GameObject:
   - component: {fileID: 719544441}
   - component: {fileID: 719544440}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Center Of Mass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,9 +436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fefd50a3d1865f4ca1f96a3d514a068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  star1: {fileID: 1668049056}
-  star2: {fileID: 548937353}
   totalMass: 0
+  level: 0
 --- !u!65 &719544441
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -465,6 +516,7 @@ GameObject:
   - component: {fileID: 1668049054}
   - component: {fileID: 1668049053}
   - component: {fileID: 1668049052}
+  - component: {fileID: 1668049057}
   - component: {fileID: 1668049056}
   m_Layer: 0
   m_Name: Star1
@@ -491,7 +543,7 @@ MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1668049051}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -552,3 +604,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mass: 2000
+  level: 0
+--- !u!108 &1668049057
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1668049051}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.89104825, b: 0, a: 1}
+  m_Intensity: 1
+  m_Range: 1
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0

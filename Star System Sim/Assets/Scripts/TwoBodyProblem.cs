@@ -4,28 +4,29 @@ using UnityEngine;
 
 public class TwoBodyProblem : MonoBehaviour {
 
-    public Star star1, star2;
+    Star[] stars;
 
     public float totalMass;
 
-	void Start () { 
-        
+    public int level;
+
+	void Start () {
+        stars = FindObjectsOfType<Star>();
 	}
 	
 	void Update () {
 
-        totalMass = star1.mass + star2.mass;
-        Vector3 centerOfMass = star1.mass / totalMass * star1.transform.position + star2.mass / totalMass * star2.transform.position;
+        totalMass = stars[0].mass + stars[1].mass;
+        Vector3 centerOfMass = stars[0].mass / totalMass * stars[0].transform.position + stars[1].mass / totalMass * stars[1].transform.position;
         transform.position = centerOfMass;
         Debug.Log(centerOfMass.ToString());
 
-        float dist = Vector3.Distance(star1.transform.position, star2.transform.position);
+        float dist = Vector3.Distance(stars[0].transform.position, stars[1].transform.position);
         float gravConst = (float) 6.674 * Mathf.Pow(10, -1);
-        float velocity1 = Mathf.Sqrt(gravConst*(totalMass/star1.mass+dist));
-        float velocity2 = Mathf.Sqrt(gravConst * (totalMass / star1.mass + dist));
+        float velocity1 = Mathf.Sqrt(gravConst*(totalMass/ stars[0].mass+dist));
+        float velocity2 = Mathf.Sqrt(gravConst * (totalMass / stars[0].mass + dist));
 
-        star1.transform.RotateAround(centerOfMass, Vector3.up, velocity1);
-        star2.transform.RotateAround(centerOfMass, Vector3.up, velocity2);
-
+        stars[0].transform.RotateAround(centerOfMass, Vector3.up, velocity1);
+        stars[1].transform.RotateAround(centerOfMass, Vector3.up, velocity2);
     }
 }
